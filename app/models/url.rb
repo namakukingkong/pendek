@@ -3,6 +3,7 @@ class Url < ActiveRecord::Base
   validates :origin, presence:  true
   validates :origin, :uniqueness => true
   before_create :compile
+  before_validation :format_origin
 
   def compile
     self.short = Digest::SHA1.hexdigest([self.origin, rand].join)[1..5]
@@ -18,5 +19,12 @@ class Url < ActiveRecord::Base
   def browser_platform
     browser = Browser.new(:ua => self.infos[:ua])
     browser.platform
+  end
+
+  def format_origin
+    unless self.origin.blank?
+      self.origin.slice!(/http:\/\/|https:\/\//)
+      self.origin = "http://#{self.origin}"
+    end
   end
 end
