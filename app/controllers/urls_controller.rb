@@ -70,7 +70,7 @@ class UrlsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_url
-      @url = Url.find_by(short: params[:id]) || Url.find_by(id: params[:id])
+      @url = Url.find_by(short: params[:id]) ||Url.find_by(origin: params[:id]) || Url.find_by(id: params[:id])
       redirect_to root_path if  @url.nil?
     end
 

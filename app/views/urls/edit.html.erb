@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @url %> |
-<%= link_to 'Back', urls_path %>
+<%= link_to 'Show', stats_path(id: @url.short) %> |
+<%= link_to 'Create', urls_path %>
