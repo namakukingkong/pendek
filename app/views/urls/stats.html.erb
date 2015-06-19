@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Short:</strong>
+  <a href="<%= @url.origin %>" target="_blank"><%= @url.short %></a>
+</p>
+
+<p>
+  <strong>Origin:</strong>
+  <%= @url.origin %>
+</p>
+
+<p>
+  <strong>Infos:</strong>
+  <%= @url.infos %>
+</p>
+
+<p>
+  <strong>Infos UA:</strong>
+  <%= @url.infos[:ua] %>
+</p>
+
+<%= link_to 'Create', new_url_path %>

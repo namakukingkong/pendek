@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :urls
+  get ':id/stats' => 'urls#stats', as: :stats
+  get ':id' => 'urls#goto', as: :goto
+  resources :urls , only: [:new , :create, :update, :index, :edit]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
