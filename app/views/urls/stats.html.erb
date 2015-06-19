@@ -2,7 +2,7 @@
 
 <p>
   <strong>Short:</strong>
-  <a href="<%= @url.origin %>" target="_blank"><%= "#{root_url(:only_path => false)}#{@url.short}" %></a>
+  <a href="<%= goto_path(id: @url.short) %>" target="_blank"><%= "#{root_url(:only_path => false)}#{@url.short}" %></a>
 </p>
 
 <p>
