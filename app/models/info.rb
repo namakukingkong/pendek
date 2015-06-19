@@ -4,7 +4,7 @@ class Info < ActiveRecord::Base
 
   def location
     loc  = Geokit::Geocoders::MultiGeocoder.geocode(self.raw[:ip])
-    {country: loc.country_code, state: loc.state, sity: loc.city}
+    {country: loc.country_code, state: loc.state, city: loc.city}
   end
   def browser_name
     browser = Browser.new(:ua => self.raw[:ua])
