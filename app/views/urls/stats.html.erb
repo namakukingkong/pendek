@@ -2,7 +2,7 @@
 
 <p>
   <strong>Short:</strong>
-  <a href="<%= @url.origin %>" target="_blank"><%= @url.short %></a>
+  <a href="<%= @url.origin %>" target="_blank"><%= "#{root_url(:only_path => false)}#{@url.short}" %></a>
 </p>
 
 <p>
@@ -10,27 +10,36 @@
   <%= @url.origin %>
 </p>
 
-<p>
-  <strong>Infos IP:</strong>
-  <%= @url.infos[:ip] %>
-</p>
+<h2>Info</h2>
+<% if @url.infos.present? %>
+    <% @url.infos.each do |info| %>
+        <p>
+          <strong>Infos IP:</strong>
+          <%= info.raw[:ip] %>
+        </p>
 
-<p>
-  <strong>Infos Location:</strong>
-  <%= @url.location %>
-</p>
-<p>
-  <strong>Infos Browser:</strong>
-  <%= @url.browser_name %>
-</p>
-<p>
-  <strong>Infos Platform:</strong>
-  <%= @url.browser_platform %>
-</p>
+        <p>
+          <strong>Infos Location:</strong>
+          <%= info.location %>
+        </p>
+        <p>
+          <strong>Infos Browser:</strong>
+          <%= info.browser_name %>
+        </p>
+        <p>
+          <strong>Infos Platform:</strong>
+          <%= info.browser_platform %>
+        </p>
 
-<p>
-  <strong>Infos UA:</strong>
-  <%= @url.infos[:ua] %>
-</p>
+        <p>
+          <strong>Infos UA:</strong>
+          <%= info.raw[:ua] %>
+        </p>
+        <p>------------------------------------</p><br/>
+    <% end %>
 
+<% else %>
+    <p> ---------- empty ---------</p>
+    <br/>
+<% end %>
 <%= link_to 'Create', new_url_path %>

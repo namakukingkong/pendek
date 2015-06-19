@@ -11,12 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619122313) do
+ActiveRecord::Schema.define(version: 20150619214035) do
+
+  create_table "infos", force: :cascade do |t|
+    t.text     "raw"
+    t.integer  "url_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "urls", force: :cascade do |t|
     t.string   "origin"
     t.string   "short"
-    t.text     "infos"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

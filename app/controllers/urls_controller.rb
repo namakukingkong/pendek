@@ -15,6 +15,8 @@ class UrlsController < ApplicationController
 
   # GET /urls/new
   def goto
+    #save request and useragent
+    @url.infos.create(raw: {ip: request.remote_ip, ua: request.env["HTTP_USER_AGENT"]})
     redirect_to @url.origin, :status => 301
   end
 
@@ -30,8 +32,6 @@ class UrlsController < ApplicationController
   # POST /urls.json
   def create
     @url = Url.new(url_params)
-    #save request and useragent
-    @url.infos = {ip: request.remote_ip, ua: request.env["HTTP_USER_AGENT"]}
     respond_to do |format|
       if @url.save
         format.html { redirect_to stats_path(id: @url.short), notice: 'Url was successfully created.' }
@@ -70,13 +70,13 @@ class UrlsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_url
-      @url = Url.find_by(short: params[:id]) ||Url.find_by(origin: params[:id]) || Url.find_by(id: params[:id])
-      redirect_to root_path if  @url.nil?
+      @url = Url.find_by(short: params[:id])
+      redirect_to  root_path , notice: 'Url not foud, u can create it!' if  @url.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def url_params
       #just origin n infos
-      params.require(:url).permit(:origin, :infos)
+      params.require(:url).permit(:origin, :short)
     end
 end
