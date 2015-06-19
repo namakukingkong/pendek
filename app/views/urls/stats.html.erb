@@ -11,8 +11,21 @@
 </p>
 
 <p>
-  <strong>Infos:</strong>
-  <%= @url.infos %>
+  <strong>Infos IP:</strong>
+  <%= @url.infos[:ip] %>
+</p>
+
+<p>
+  <strong>Infos Location:</strong>
+  <%= @url.location %>
+</p>
+<p>
+  <strong>Infos Browser:</strong>
+  <%= @url.browser_name %>
+</p>
+<p>
+  <strong>Infos Platform:</strong>
+  <%= @url.browser_platform %>
 </p>
 
 <p>
